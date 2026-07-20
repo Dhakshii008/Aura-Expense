@@ -1,0 +1,18 @@
+# React
+frontend/node_modules/
+frontend/dist/
+
+# Python
+backend/__pycache__/
+*.pyc
+
+# SQLite Database
+backend/expenses.db
+
+# Environment
+.env
+venv/
+.venv/
+
+# VS Code
+.vscode/
