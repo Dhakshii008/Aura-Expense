@@ -353,4 +353,8 @@ def get_summary(current_user_id):
 if __name__ == '__main__':
     # Try imports import sqlite3 to catch sqlite3 import errors early
     import sqlite3
-    app.run(debug=True, port=5000)
+    app.run(
+    host="0.0.0.0",
+    port=int(os.environ.get("PORT", 5000)),
+    debug=False
+)
