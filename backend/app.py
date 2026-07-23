@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import bcrypt
 import jwt
+import sqlite3
 import datetime
 from functools import wraps
 from database import get_db_connection, init_db
