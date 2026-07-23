@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-
+const API_URL = "https://aura-expense-api-dzrt.onrender.com";
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
@@ -18,6 +18,7 @@ export const AuthProvider = ({ children }) => {
         } catch (e) {
           localStorage.removeItem('user');
         }
+
       }
     }
     setLoading(false);
@@ -25,7 +26,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch(`${API_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
@@ -48,7 +49,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (username, password) => {
     try {
-      const response = await fetch('/api/auth/register', {
+      const response = await fetch(`${API_URL}/api/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })

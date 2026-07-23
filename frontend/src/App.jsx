@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard';
 import TransactionList from './components/TransactionList';
 import TransactionForm from './components/TransactionForm';
 import { motion } from 'framer-motion';
+const API_URL = "https://aura-expense-api-dzrt.onrender.com";
 
 function MainApp() {
   const { token, loading, logout, getAuthHeaders } = useAuth();
@@ -19,7 +20,7 @@ function MainApp() {
 
   const fetchTransactions = async () => {
     try {
-      const res = await fetch('/api/transactions', {
+      const res = await fetch(`${API_URL}/api/transactions`, {
         headers: getAuthHeaders()
       });
       if (res.status === 401) {
@@ -38,7 +39,7 @@ function MainApp() {
 
   const fetchSummary = async () => {
     try {
-      const res = await fetch(`/api/transactions/summary?month=${currentMonth}`, {
+      const res = await fetch(`${API_URL}/api/transactions/summary?month=${currentMonth}`, {
         headers: getAuthHeaders()
       });
       if (res.status === 401) {
@@ -71,8 +72,8 @@ function MainApp() {
     console.log("[DEBUG FRONTEND App] handleFormSubmit payload:", payload);
     try {
       const url = editingTransaction 
-        ? `/api/transactions/${editingTransaction.id}` 
-        : '/api/transactions';
+        ? `${API_URL}/api/transactions/${editingTransaction.id}` 
+        : `${API_URL}/api/transactions`;
       const method = editingTransaction ? 'PUT' : 'POST';
 
       const headers = getAuthHeaders();
@@ -109,7 +110,7 @@ function MainApp() {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this transaction?')) return;
     try {
-      const res = await fetch(`/api/transactions/${id}`, {
+      const res = await fetch(`${API_URL}/api/transactions/${id}`, {
         method: 'DELETE',
         headers: getAuthHeaders()
       });
